@@ -1,0 +1,71 @@
+/*? Design top */
+
+div.header__content {
+	padding: 16px 16px 14px;
+}
+
+div.menuTop__content {
+	grid-template-rows: 41px;
+}
+
+/*! Oblibené, customize header for all sports */
+a.menuTop__item.menuTop__myfs {
+	--grid-template: " . .      .      .      . " 8px " . icon   text   count  . " 20px
+		" . .      .      .      . " 8px " . border border border . " 4px/14px max-content
+		max-content 25px 14px;
+}
+
+a.menuTop__item {
+	grid-template: var(
+		--grid-template,
+		" . .      .      . " 8px " . icon   text   . " 21px " . .      .      . " 8px
+			" . border border . " 4px/14px max-content max-content 14px
+	);
+}
+
+.tvBox,
+#lc {
+	padding-top: 12px;
+}
+
+div.container__mainInner {
+	padding-top: 2px;
+}
+
+div.container__fsbody {
+	padding: 10px 8px 4px;
+}
+
+div.filters__group {
+	padding-bottom: 10px;
+}
+
+/* Buttons LIVE, KURZY, DOHRANE...*/
+.filters__tab {
+	height: 32px;
+}
+
+.calendar {
+	grid-template: " yesterday datepicker  tomorrow " 30px/32px max-content 32px;
+}
+
+/* Important for nice click detection in clickReset() - only parent div; not text or svg children */
+.filters__tab *,
+.calendar svg {
+	pointer-events: none;
+}
+
+/** Block cookie bar and useless things */
+/*! #onetrust-consent-sdk, 	nezamítnutý banner vytěžuje cpu */
+.otPlaceholder,
+#box-under-content-wrapper,
+.boxOverContent__banner,
+#rc-top {
+	display: none !important;
+}
+
+/* Match section DESIGN */
+div.event__match--last {
+	margin-bottom: 0;
+	border-bottom: none;
+}

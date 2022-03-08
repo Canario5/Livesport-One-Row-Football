@@ -1,0 +1,39 @@
+{
+	"manifest_version": 3,
+	"name": "Livesport One Line Football",
+	"version": "0.1",
+
+	"description": "Football match scores packed in one simple line instead of two.",
+
+	"content_scripts": [
+		{
+			"matches": ["*://*.livesport.cz/"],
+			"exclude_globs": ["*tenis*"],
+			"js": ["Load-styles.js"],
+			"run_at": "document_start"
+		},
+		{
+			"matches": ["*://*.livesport.cz/"],
+			"exclude_globs": ["*tenis*"],
+			"js": ["Load-scripts.js"],
+			"run_at": "document_end"
+		}
+	],
+
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"Bettersport.css",
+				"Bettersport-global.css",
+				"Bettersport.js",
+				"MatchRefresh.js"
+			],
+			"matches": ["*://*.livesport.cz/*"]
+		}
+	],
+
+	"icons": {
+		"48": "/assets/icons/48px.png",
+		"128": "/assets/icons/128px.png"
+	}
+}

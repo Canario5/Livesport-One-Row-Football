@@ -1,0 +1,253 @@
+/*? Match design */
+/* Convert Matches into row design with flex */
+.event .soccer .event__match--twoLine {
+	display: flex;
+	height: 25px;
+}
+
+/* To match grid in headlines with smaller size of .eventStarTouchZone; Header with a name of a league */
+div.event__header {
+	grid-template-columns: 26px 1fr;
+}
+
+/* Star adding to favorites */
+div.eventStarTouchZone {
+	order: 1;
+	width: 26px;
+}
+
+div.event__stage,
+div.event__stage--block {
+	word-break: normal;
+	line-height: 13px;
+}
+
+/* Starting time + match ended */
+.event__stage,
+.event__match .event__time {
+	order: 2;
+	width: 100%;
+	max-width: 58px;
+	flex-direction: row !important;
+}
+
+.event__stage--pkv {
+	margin: 0 0 0 2px;
+}
+
+/* Redcard left side flip HOME */
+.event__match--twoLine .event__participant--home .icon--redCard {
+	order: -2;
+	margin: 0 1px;
+}
+
+.event__match--twoLine .event__participant--home .icon--redCard.icon--redCard-last {
+	margin: 0 6px 0 1px;
+}
+
+/* Winner icon HOME */
+.event__match--twoLine .event__participant--home .winner-ico.icon--winner {
+	order: -3;
+}
+
+/* Highlighted msgs (goal, penalta, oprava...) */
+.event__match--twoLine .event__participant--home .highlightMsg,
+.event__match--twoLine .event__participant--home svg.icon {
+	order: -4;
+}
+
+/*TODO: VAR icon on the left doesnt have any margin; needs visual confirmation */
+.icon--var {
+	margin-right: 6px;
+}
+
+.event__participant--home {
+	order: 6;
+	justify-content: flex-end;
+	min-width: 28%;
+	max-width: 28%;
+}
+
+/* Fix for tab Odds/Kurzy */
+.odds .event__participant--home {
+	min-width: unset;
+	min-width: unset;
+}
+
+/*LOGO HOME team*/
+.event__match--twoLine .event__logo.event__logo--home {
+	order: 7;
+	margin: 0 4px;
+}
+
+.event__score--home {
+	order: 10;
+}
+
+/* Override highlighting width change during goals etc. */
+.event__score--home,
+.event__score--away {
+	min-width: 12px !important;
+	margin: initial !important;
+	padding: 0 !important;
+}
+
+.scoreColon.event__match--live {
+	order: 11;
+}
+
+.event__score--away {
+	order: 12;
+}
+
+/* First icon preview in center; second is blank score dash in Odds tab */
+.icon--preview,
+.event__resultBefore {
+	order: 13;
+	min-width: 58px;
+	text-align: center;
+}
+/* CENTER */
+.scoreContainer {
+	order: 14;
+	min-width: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Size of score boxes*/
+div.scoreContainer .event__part {
+	min-width: 14px;
+}
+
+.event__part--home.event__part--1 {
+	order: 15;
+}
+
+.scoreColon.event__part--1 {
+	order: 16;
+}
+
+.event__part--away.event__part--1 {
+	order: 17;
+}
+
+/* First is class almost everywhere, second is in Odds tab */
+.event__part--home.event__part--2,
+.event__partScore.event__partScore--home {
+	order: 19;
+}
+.event__partScore.event__partScore--home {
+	margin: 0 0 0 2px;
+}
+
+/* First is class almost everywhere, second is in Odds tab */
+.scoreColon.event__part--2,
+.scoreColon.event__partScore {
+	order: 20;
+}
+
+/* First is class almost everywhere, second is in Odds tab */
+.event__part--away.event__part--2,
+.event__partScore.event__partScore--away {
+	order: 21;
+}
+
+/* Logo away team */
+.event__match--twoLine .event__logo.event__logo--away {
+	order: 22;
+	margin: 0 4px;
+}
+
+div.event__participant.event__participant--away {
+	order: 23;
+	padding-left: 0;
+	margin-right: auto;
+}
+
+/* Redcard side keep away */
+.event__match--twoLine .event__participant--away .icon--redCard-last {
+	margin: 0 1px;
+}
+
+.event__match--twoLine .event__participant--away .icon--redCard-first {
+	order: 2;
+	margin: 0 1px 0 6px;
+}
+
+/* Winner icon AwayTeam  */
+.event__match--twoLine .event__participant--away .winner-ico.icon--winner {
+	order: 3;
+}
+
+/* Highlighted msgs (goal, penalta, oprava...) */
+.event__match--twoLine .event__participant--away .highlightMsg,
+.event__match--twoLine .event__participant--away svg.icon {
+	order: 4;
+	margin-left: 6px;
+	/* margin-left: 12px; */
+}
+
+.event__match--twoLine:before {
+	display: none;
+}
+
+/* Odds tab -> section headline of matches */
+div.odds__odd.no-odds.fontBold,
+.odds .event__header .odds__odd {
+	width: 50px;
+	min-width: 50px;
+}
+
+/* Position Odds boxes on Odds tab */
+.odds .event__match--twoLine div.odds__odd {
+	order: 28;
+	width: 52px;
+}
+
+.icon--stream {
+	order: 29;
+}
+
+.icon--audio {
+	order: 30;
+}
+
+.icon--info {
+	order: 31;
+}
+
+.icon--tv {
+	order: 32;
+}
+
+.event .icon.icon--standing {
+	order: 33;
+	margin-right: inherit;
+}
+
+#live-table .icon--live {
+	order: 34;
+	align-self: center;
+	width: 26px;
+	height: 18px;
+	font-size: 13px;
+	letter-spacing: 0.4px;
+	font-weight: 700;
+}
+
+.dummyLiveOdds {
+	order: 34;
+	width: 26px;
+}
+
+.icon--stream,
+.icon--audio,
+.icon--info,
+.icon--tv,
+.icon--standing,
+#live-table .icon--live,
+.dummyLiveOdds {
+	margin: 0 0 0 4px;
+}
