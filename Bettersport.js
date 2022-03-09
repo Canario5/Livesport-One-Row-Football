@@ -1,34 +1,19 @@
 import { matchRefresh } from "./MatchRefresh.js"
 
-let shortObserverNode
-let shortActive = false
-let deepActive = false
 let loopBlock = false
 let nrMatches = 0
 
 const deepObserving = () => {
-	if (deepActive === false) {
-		deepObserver.observe(document.body, {
-			childList: true,
-			subtree: true,
-		})
-		deepActive = true
-		//console.log("deep observing active")
-	}
+	deepObserver.observe(document.body, {
+		childList: true,
+		subtree: true,
+	})
 }
 
 const deepObserver = new MutationObserver(() => {
-	if (
-		/* Not perfect, there can be a same number of matches on different tabs like Live or Played. 
-		Solved by clickReset() */
-		document.querySelectorAll(".event__match").length != nrMatches
-	) {
+	if (document.querySelectorAll(".event__match").length !== nrMatches) {
 		deepObserver.disconnect()
-		//deepActive = false
-		//console.log("deep observing NOT active")
-
 		clickReset(".filters")
-		shortObserverNode = document.getElementById("live-table")
 
 		fullRefresh()
 		shortObserving()
@@ -36,57 +21,37 @@ const deepObserver = new MutationObserver(() => {
 })
 
 const shortObserving = () => {
-	if (shortActive === false) {
-		shortObserver.observe(shortObserverNode, {
-			childList: true,
-			subtree: true,
-		})
-		shortActive = true
-		//console.log("short observing active")
-	}
+	shortObserver.observe(document.getElementById("live-table"), {
+		childList: true,
+		subtree: true,
+	})
 }
 
 const shortObserver = new MutationObserver((mutations) => {
-	/* Checks for change of a subpage or show/hide of a league matches */
+	/* Not perfect, there can be a same number of matches on different tabs like Live or Played. 
+	Solved by clickReset() */
 	if (document.querySelectorAll(".event__match").length != nrMatches) {
 		loopBlock = true
 		nrMatches = document.querySelectorAll(".event__match").length
 		fullRefresh()
 	}
 
-	if (loopBlock) {
-		return
-	}
+	if (loopBlock) return
 
 	/* Checking for started/resumed games after loading of the page */
 	for (const mutation of mutations) {
-		/* console.log(mutations.length)
-		console.log(mutation) */
+		if (mutation.addedNodes.length <= 0) continue
 
-		if (mutation.addedNodes.length <= 0) {
-			continue
-		}
-
-		if (
-			mutation.target.textContent == 91 //? Is there better alternative?
-		) {
+		//? Is there better alternative?
+		if (mutation.target.textContent == 91) {
 			matchRefresh(mutation.target.closest(".event__match"))
 			continue
 		}
 
-		if (!mutation.addedNodes[0].classList) {
-			continue
-		}
+		if (!mutation.addedNodes[0].classList) continue
 
-		if (
-			mutation.addedNodes[0].classList.contains("event__stage")
-			/* mutation.removedNodes[0].classList.contains("event__time") ||
-			mutation.removedNodes[0].classList.contains("event__stage--pkv")  */
-		) {
-			matchRefresh(mutation.target, true) // refresh even not live match for PKV
-			/* setTimeout(() => {
-				matchRefresh(mutation.target)
-			}, 1000) */
+		if (mutation.addedNodes[0].classList.contains("event__stage")) {
+			matchRefresh(mutation.target, true) // refresh all types of match (with not-live match as well) because of PKV
 		}
 		//TODO When a user is logged this is not needed. Local storage should work fine for that.
 		if (mutation.target.classList.contains("sportName")) {
@@ -98,9 +63,7 @@ const shortObserver = new MutationObserver((mutations) => {
 })
 
 const clickReset = (selector) => {
-	if (!document.querySelector(selector)) {
-		return
-	}
+	if (!document.querySelector(selector)) return
 
 	document.querySelector(selector).addEventListener("click", (event) => {
 		if (
@@ -118,7 +81,7 @@ const fullRefresh = () => {
 
 	/* Check if its Odds subPage*/
 	let oddsPage
-	shortObserverNode.querySelector(".odds") ? (oddsPage = true) : undefined
+	document.querySelector(".event.odds") ? (oddsPage = true) : undefined
 
 	for (let i = 0; i < allMatches.length; i++) {
 		if (
@@ -135,10 +98,7 @@ const fullRefresh = () => {
 
 		matchRefresh(allMatches[i])
 	}
-	unblock()
-}
 
-const unblock = () => {
 	loopBlock = false
 }
 
