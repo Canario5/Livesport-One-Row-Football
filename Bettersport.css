@@ -227,7 +227,9 @@ div.odds__odd.no-odds.fontBold,
 	margin-right: inherit;
 }
 
-#live-table .icon--live {
+/* #live-table .icon--live, removed 9.3.2022 */
+#live-table .liveBet-ico,
+#live-table .bet-ico {
 	order: 34;
 	align-self: center;
 	width: 26px;
@@ -247,7 +249,9 @@ div.odds__odd.no-odds.fontBold,
 .icon--info,
 .icon--tv,
 .icon--standing,
-#live-table .icon--live,
-.dummyLiveOdds {
+/* #live-table .icon--live, removed 9.3.2022 */
+.dummyLiveOdds,
+#live-table .liveBet-ico, 
+#live-table .bet-ico {
 	margin: 0 0 0 4px;
 }

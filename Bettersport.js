@@ -8,13 +8,9 @@ let nrMatches = 0
 
 const deepObserving = () => {
 	if (deepActive === false) {
-		// Start observing
 		deepObserver.observe(document.body, {
-			//document.body is node target to observe
-			//attributes: true,
-			//characterData: true,
-			childList: true, //This is a must have for the observer with subtree
-			subtree: true, //Set to true if changes must also be observed in descendants.
+			childList: true,
+			subtree: true,
 		})
 		deepActive = true
 		//console.log("deep observing active")
@@ -129,7 +125,7 @@ const fullRefresh = () => {
 			/* Odds tab only -> blank div for keeping it pretty */
 			oddsPage &&
 			allMatches[i] &&
-			!allMatches[i].querySelector(".icon--live") &&
+			!allMatches[i].querySelector("svg[data-bookmaker-id]") &&
 			!allMatches[i].querySelector(".dummyLiveOdds")
 		) {
 			const iconBox = document.createElement("div")
