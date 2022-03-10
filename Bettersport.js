@@ -16,7 +16,7 @@ const deepObserving = () => {
 }
 
 const deepObserver = new MutationObserver(() => {
-	if (document.querySelectorAll(".event__match").length !== nrMatches(true)) {
+	if (document.querySelectorAll(".event__match").length) {
 		deepObserver.disconnect()
 		clickReset(".filters")
 
@@ -70,7 +70,6 @@ const fullRefresh = () => {
 
 	/* Check if its Odds subPage*/
 	const oddsPage = document.querySelector(".event.odds") ? true : false
-	console.log(oddsPage)
 
 	for (let i = 0; i < allMatches.length; i++) {
 		if (

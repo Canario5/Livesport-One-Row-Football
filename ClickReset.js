@@ -2,11 +2,10 @@ import { nrMatches } from "./Bettersport.js"
 
 // Resets nrMatches and meets fullRefresh conditions with a change of a subpage
 export const clickReset = (selector) => {
-	console.log("KLIK,KLAK")
 	if (!document.querySelector(selector)) return
 
 	document.querySelector(selector).addEventListener("click", (event) => {
-		console.log("LOLO")
+		// classes are from buttons inside div.filters
 		if (
 			event.target.classList.contains("filters__tab") ||
 			event.target.classList.contains("calendar__navigation") ||
