@@ -26,7 +26,8 @@
 				"Bettersport.css",
 				"Bettersport-global.css",
 				"Bettersport.js",
-				"MatchRefresh.js"
+				"MatchRefresh.js",
+				"ClickReset.js"
 			],
 			"matches": ["*://*.livesport.cz/*"]
 		}

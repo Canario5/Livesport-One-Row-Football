@@ -1,7 +1,12 @@
 import { matchRefresh } from "./MatchRefresh.js"
+import { clickReset } from "./ClickReset.js"
 
 let loopBlock = false
-let nrMatches = 0
+
+export const nrMatches = (reset) => {
+	const nr = reset ? 0 : document.querySelectorAll(".event__match").length
+	return nr
+}
 
 const deepObserving = () => {
 	deepObserver.observe(document.body, {
@@ -11,7 +16,7 @@ const deepObserving = () => {
 }
 
 const deepObserver = new MutationObserver(() => {
-	if (document.querySelectorAll(".event__match").length !== nrMatches) {
+	if (document.querySelectorAll(".event__match").length !== nrMatches(true)) {
 		deepObserver.disconnect()
 		clickReset(".filters")
 
@@ -29,9 +34,8 @@ const shortObserving = () => {
 
 const shortObserver = new MutationObserver((mutations) => {
 	/* Not perfect, there can be a same number of matches on different tabs like Live or Played. 
-	Solved by clickReset() */
-	if (document.querySelectorAll(".event__match").length !== nrMatches) {
-		nrMatches = document.querySelectorAll(".event__match").length
+	Solved by clickReset.js */
+	if (document.querySelectorAll(".event__match").length !== nrMatches()) {
 		fullRefresh()
 	}
 
@@ -59,20 +63,6 @@ const shortObserver = new MutationObserver((mutations) => {
 		}
 	}
 })
-
-const clickReset = (selector) => {
-	if (!document.querySelector(selector)) return
-
-	document.querySelector(selector).addEventListener("click", (event) => {
-		if (
-			event.target.classList.contains("filters__tab") ||
-			event.target.classList.contains("calendar__navigation") ||
-			event.target.classList.contains("calendar__day")
-		) {
-			nrMatches = 0
-		}
-	})
-}
 
 const fullRefresh = () => {
 	loopBlock = true
