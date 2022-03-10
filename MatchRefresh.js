@@ -1,6 +1,6 @@
 let scoreNodes
 
-export const matchRefresh = (match, notActiveToo) => {
+export const matchRefresh = (match, everyMatch) => {
 	if (match.querySelector(".icon--preview") || match.querySelector(".event__resultBefore")) {
 		return
 	}
@@ -8,19 +8,22 @@ export const matchRefresh = (match, notActiveToo) => {
 	scoreNodes = document.createDocumentFragment()
 	const eleScoreContainer = match.querySelector(".scoreContainer")
 
-	/* Creation of Score Container */
+	/* For single match refresh with every match (not currently active included) */
+	if (eleScoreContainer && everyMatch) {
+		scoreNodes = eleScoreContainer
+		scoreInit(match)
+	}
+
+	/* For all matches refresh, but only live matches refreshed */
+	if (eleScoreContainer && !everyMatch && match.classList.contains("event__match--live")) {
+		scoreNodes = eleScoreContainer
+		scoreInit(match)
+	}
+
 	if (!eleScoreContainer) {
 		const divScore = document.createElement("div")
 		divScore.className = "scoreContainer"
 		scoreNodes = scoreNodes.appendChild(divScore)
-		scoreInit(match)
-	} else if (notActiveToo && eleScoreContainer) {
-		/* For single match refresh */
-		scoreNodes = eleScoreContainer
-		scoreInit(match)
-	} else if (eleScoreContainer && match.classList.contains("event__match--live")) {
-		/* For all matches refresh; not active matches skipped though */
-		scoreNodes = eleScoreContainer
 		scoreInit(match)
 	}
 
