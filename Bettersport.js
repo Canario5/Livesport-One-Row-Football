@@ -30,8 +30,7 @@ const shortObserving = () => {
 const shortObserver = new MutationObserver((mutations) => {
 	/* Not perfect, there can be a same number of matches on different tabs like Live or Played. 
 	Solved by clickReset() */
-	if (document.querySelectorAll(".event__match").length != nrMatches) {
-		loopBlock = true
+	if (document.querySelectorAll(".event__match").length !== nrMatches) {
 		nrMatches = document.querySelectorAll(".event__match").length
 		fullRefresh()
 	}
@@ -42,7 +41,7 @@ const shortObserver = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {
 		if (mutation.addedNodes.length <= 0) continue
 
-		//? Is there better alternative?
+		//TODO Is there better alternative?
 		if (mutation.target.textContent == 91) {
 			matchRefresh(mutation.target.closest(".event__match"))
 			continue
@@ -51,11 +50,10 @@ const shortObserver = new MutationObserver((mutations) => {
 		if (!mutation.addedNodes[0].classList) continue
 
 		if (mutation.addedNodes[0].classList.contains("event__stage")) {
-			matchRefresh(mutation.target, true) // refresh all types of match (with not-live match as well) because of PKV
+			matchRefresh(mutation.target, true) // refresh all types of match (with not-live match as well) because of PKV starts
 		}
 		//TODO When a user is logged this is not needed. Local storage should work fine for that.
 		if (mutation.target.classList.contains("sportName")) {
-			loopBlock = true
 			fullRefresh()
 			break
 		}
@@ -77,11 +75,12 @@ const clickReset = (selector) => {
 }
 
 const fullRefresh = () => {
+	loopBlock = true
 	const allMatches = document.querySelectorAll(".event__match")
 
 	/* Check if its Odds subPage*/
-	let oddsPage
-	document.querySelector(".event.odds") ? (oddsPage = true) : undefined
+	const oddsPage = document.querySelector(".event.odds") ? true : false
+	console.log(oddsPage)
 
 	for (let i = 0; i < allMatches.length; i++) {
 		if (
