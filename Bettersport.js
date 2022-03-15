@@ -1,8 +1,6 @@
 import { matchRefresh } from "./MatchRefresh.js"
 import { clickReset } from "./ClickReset.js"
 
-let loopBlock = false
-
 export const nrMatches = (reset) => {
 	const nr = reset ? 0 : document.querySelectorAll(".event__match").length
 	return nr
@@ -39,8 +37,6 @@ const shortObserver = new MutationObserver((mutations) => {
 		fullRefresh()
 	}
 
-	if (loopBlock) return
-
 	/* Checking for started/resumed games after loading of the page */
 	for (const mutation of mutations) {
 		if (mutation.addedNodes.length <= 0) continue
@@ -56,7 +52,8 @@ const shortObserver = new MutationObserver((mutations) => {
 		if (mutation.addedNodes[0].classList.contains("event__stage")) {
 			matchRefresh(mutation.target, true) // refresh all types of match (with not-live match as well) because of PKV starts
 		}
-		//TODO When a user is logged this is not needed. Local storage should work fine for that.
+
+		// When a user is not logged !localStorage.hasOwnProperty("lsid_id")
 		if (mutation.target.classList.contains("sportName")) {
 			fullRefresh()
 			break
@@ -65,7 +62,6 @@ const shortObserver = new MutationObserver((mutations) => {
 })
 
 const fullRefresh = () => {
-	loopBlock = true
 	const allMatches = document.querySelectorAll(".event__match")
 
 	/* Check if its Odds subPage*/
@@ -86,8 +82,6 @@ const fullRefresh = () => {
 
 		matchRefresh(allMatches[i])
 	}
-
-	loopBlock = false
 }
 
 deepObserving()
