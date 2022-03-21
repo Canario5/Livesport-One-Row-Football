@@ -33,19 +33,19 @@ export const matchRefresh = (match, everyMatch) => {
 }
 
 /* scoreClasses */
-const homeClass = [
+const homeClasses = [
 	".event__score--home",
 	".event__part--home.event__part--1",
 	".event__part--home.event__part--2",
 	".event__partScore--home",
 ]
-const awayClass = [
+const awayClasses = [
 	".event__score--away",
 	".event__part--away.event__part--1",
 	".event__part--away.event__part--2",
 	".event__partScore--away",
 ]
-const colonClass = [
+const colonClasses = [
 	"scoreColon event__match--live event__score",
 	"scoreColon event__part--1",
 	"scoreColon event__part--2",
@@ -54,9 +54,9 @@ const colonClass = [
 const editHalf = [false, true, false, false]
 
 const scoreInit = (match) => {
-	homeClass.map((homeClass, i) =>
+	homeClasses.map((homeClass, i) =>
 		match.querySelector(`:scope > ${homeClass}`)
-			? transformScore(match, homeClass, awayClass[i], colonClass[i], editHalf[i])
+			? transformScore(match, homeClass, awayClasses[i], colonClasses[i], editHalf[i])
 			: undefined
 	)
 }
