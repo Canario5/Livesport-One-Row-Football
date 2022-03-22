@@ -1,4 +1,4 @@
-# Livesport-One-line-Football - Google Chrome Extension
+# Livesport One Row Football - Google Chrome Extension
 
 ## _Football match scores packed in one simple line instead of two_ ⚽
 
@@ -10,3 +10,7 @@ Livesport.cz, a popular site for sports scores, changed its look a few weeks ago
 ![](docs/images/LS-live.png)
 
 > Note: The speed of this extension depends on how many football matches you have opened. If you want swifter reactions then hide matches from leagues you are not interested in.
+
+### How to install an unpacked Chrome Extension
+
+You can download this extension on [release page](https://github.com/Canario5/Livesport-One-line-Football/releases). Then unpack downloaded .zip archive and load extension manually into Chrome browser. The best way is to follow the official [guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked) from Google.
