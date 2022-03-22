@@ -1,5 +1,5 @@
-import { matchRefresh } from "./MatchRefresh.js"
-import { clickReset } from "./ClickReset.js"
+import { matchRefresh } from "./MatchRefresh.js" // rearanging matches
+import { clickReset } from "./ClickReset.js" // helps with moving between subpages (All, Odds, Played...)
 
 export const nrMatches = (reset) => {
 	const nr = reset ? 0 : document.querySelectorAll(".event__match").length
