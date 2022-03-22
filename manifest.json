@@ -7,6 +7,11 @@
 
 	"content_scripts": [
 		{
+			"matches": ["*://*.livesport.cz/*"],
+			"js": ["Load-global-styles.js"],
+			"run_at": "document_start"
+		},
+		{
 			"matches": ["*://*.livesport.cz/"],
 			"exclude_globs": ["*tenis*"],
 			"js": ["Load-styles.js"],
@@ -14,7 +19,6 @@
 		},
 		{
 			"matches": ["*://*.livesport.cz/"],
-			"exclude_globs": ["*tenis*"],
 			"js": ["Load-scripts.js"],
 			"run_at": "document_end"
 		}
