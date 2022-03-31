@@ -62,25 +62,26 @@ const shortObserver = new MutationObserver((mutations) => {
 })
 
 const fullRefresh = () => {
-	const allMatches = document.querySelectorAll(".event__match")
-
 	/* Check if its Odds subPage*/
 	const oddsPage = document.querySelector(".event.odds") ? true : false
 
-	for (let i = 0; i < allMatches.length; i++) {
-		if (
-			/* Odds tab only -> blank div for keeping it pretty */
-			oddsPage &&
-			allMatches[i] &&
-			!allMatches[i].querySelector("svg[data-bookmaker-id]") &&
-			!allMatches[i].querySelector(".dummyLiveOdds")
-		) {
-			const iconBox = document.createElement("div")
-			iconBox.className = "dummyLiveOdds"
-			allMatches[i].appendChild(iconBox)
-		}
+	const allMatches = document.querySelectorAll(".event__match").forEach((match) => {
+		oddsPretty(match, oddsPage)
+		matchRefresh(match)
+	})
+}
 
-		matchRefresh(allMatches[i])
+const oddsPretty = (match, oddsPage) => {
+	/* Odds tab only -> added blank div for keeping it pretty */
+	if (
+		oddsPage &&
+		match &&
+		!match.querySelector("svg[data-bookmaker-id]") &&
+		!match.querySelector(".dummyLiveOdds")
+	) {
+		const iconBox = document.createElement("div")
+		iconBox.className = "dummyLiveOdds"
+		match.appendChild(iconBox)
 	}
 }
 
