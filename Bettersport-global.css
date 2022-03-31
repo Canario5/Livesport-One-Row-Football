@@ -55,15 +55,6 @@ div.filters__group {
 	pointer-events: none;
 }
 
-/** Block cookie bar and useless things */
-/*! #onetrust-consent-sdk, 	nezamítnutý banner vytěžuje cpu */
-.otPlaceholder,
-#box-under-content-wrapper,
-.boxOverContent__banner,
-#rc-top {
-	display: none !important;
-}
-
 /* Match section DESIGN */
 div.event__match--last {
 	margin-bottom: 0;
