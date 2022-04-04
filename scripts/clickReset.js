@@ -1,4 +1,4 @@
-import { nrMatches } from "./Bettersport.js"
+import { nrMatches } from "/scripts/bettersport.js"
 
 // Resets nrMatches and meets fullRefresh conditions with a change of a subpage
 export const clickReset = (selector) => {

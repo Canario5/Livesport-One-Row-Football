@@ -1,5 +1,5 @@
-import { matchRefresh } from "./MatchRefresh.js" // rearanging matches
-import { clickReset } from "./ClickReset.js" // helps with moving between subpages (All, Odds, Played...)
+import { matchRefresh } from "/scripts/matchRefresh.js" // rearranging match scores
+import { clickReset } from "/scripts/clickReset.js" // helps with moving between subpages (All, Odds, Played...)
 
 export const nrMatches = (reset) => {
 	const nr = reset ? 0 : document.querySelectorAll(".event__match").length
@@ -62,7 +62,6 @@ const shortObserver = new MutationObserver((mutations) => {
 })
 
 const fullRefresh = () => {
-	/* Check if its Odds subPage*/
 	const oddsPage = document.querySelector(".event.odds") ? true : false
 
 	const allMatches = document.querySelectorAll(".event__match").forEach((match) => {
