@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Livesport One Row Football",
-	"version": "0.2",
+	"version": "0.2.2",
 
 	"description": "Football match scores packed in one simple line instead of two.",
 
@@ -30,9 +30,9 @@
 				"Bettersport.css",
 				"Bettersport-global.css",
 				"/scripts/bettersport.js",
-				"/scripts/clickReset.js",
 				"/scripts/initClasses.js",
-				"/scripts/matchRefresh.js"
+				"/scripts/matchRefresh.js",
+				"/scripts/transformScore.js"
 			],
 			"matches": ["*://*.livesport.cz/*"]
 		}
