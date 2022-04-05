@@ -32,7 +32,8 @@
 				"/scripts/bettersport.js",
 				"/scripts/initClasses.js",
 				"/scripts/matchRefresh.js",
-				"/scripts/transformScore.js"
+				"/scripts/transformScore.js",
+				"/scripts/keepOddsPretty.js"
 			],
 			"matches": ["*://*.livesport.cz/*"]
 		}
