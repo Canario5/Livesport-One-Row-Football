@@ -49,12 +49,6 @@ div.filters__group {
 	grid-template: " yesterday datepicker  tomorrow " 30px/32px max-content 32px;
 }
 
-/* Important for nice click detection in clickReset() - only parent div; not text or svg children */
-.filters__tab *,
-.calendar svg {
-	pointer-events: none;
-}
-
 /* Match section DESIGN */
 div.event__match--last {
 	margin-bottom: 0;
