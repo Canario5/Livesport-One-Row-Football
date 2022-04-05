@@ -1,4 +1,5 @@
 import { matchRefresh } from "/scripts/matchRefresh.js"
+import { keepOddsPretty } from "/scripts/keepOddsPretty.js"
 
 const deepObserving = () => {
 	deepObserver.observe(document.body, {
@@ -51,23 +52,11 @@ const fullRefresh = () => {
 	const oddsPage = document.querySelector(".event.odds") ? true : false
 
 	const allMatches = document.querySelectorAll(".event__match").forEach((match) => {
-		oddsPretty(match, oddsPage)
+		if (oddsPage) keepOddsPretty(match)
+
 		matchRefresh(match)
 	})
 }
 
-const oddsPretty = (match, oddsPage) => {
-	/* Odds tab only -> added blank div for keeping it pretty */
-	if (
-		oddsPage &&
-		match &&
-		!match.querySelector("svg[data-bookmaker-id]") &&
-		!match.querySelector(".dummyLiveOdds")
-	) {
-		const iconBox = document.createElement("div")
-		iconBox.className = "dummyLiveOdds"
-		match.appendChild(iconBox)
-	}
-}
-
 deepObserving()
+fullRefresh()
