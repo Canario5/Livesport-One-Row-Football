@@ -10,25 +10,28 @@ const matchRefresh = (match, everyMatch) => {
 		return
 	}
 
-	let scoreNodes = document.createDocumentFragment()
+	/* let scoreNodes */
 	const eleScoreContainer = match.querySelector(".scoreContainer")
-
-	/* For single match refresh with every match (not currently active included) */
-	if (eleScoreContainer && everyMatch) {
-		scoreNodes = eleScoreContainer
-		return transformScore(match, scoreNodes)
-	}
-
-	/* For all matches refresh, but only live matches refreshed */
-	if (eleScoreContainer && !everyMatch && match.classList.contains("event__match--live")) {
-		scoreNodes = eleScoreContainer
-		return transformScore(match, scoreNodes)
-	}
+		? match.querySelector(".scoreContainer")
+		: false
 
 	if (!eleScoreContainer) {
-		const divScore = document.createElement("div")
-		divScore.className = "scoreContainer"
-		scoreNodes = scoreNodes.appendChild(divScore)
+		const scoreNodes = document.createElement("div")
+		scoreNodes.className = "scoreContainer"
+		/* scoreNodes = scoreNodes.appendChild(divScore) */
 		return transformScore(match, scoreNodes)
 	}
+
+	/*	everyMatch for single match refresh (with not currently active included) 
+		or only live match refreshed	*/
+	if (eleScoreContainer && (everyMatch || match.classList.contains("event__match--live"))) {
+		const scoreNodes = eleScoreContainer
+		return transformScore(match, scoreNodes)
+	}
+
+	/* if (eleScoreContainer && !everyMatch && match.classList.contains("event__match--live")) {
+		const scoreNodes = scoreNodes.appendChild(eleScoreContainer)
+
+		return transformScore(match, scoreNodes)
+	} */
 }
