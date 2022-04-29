@@ -28,7 +28,5 @@ const transformScore = (match, scoreNodes) => {
 		}
 	}
 
-	if (scoreNodes.hasChildNodes()) {
-		match.appendChild(scoreNodes)
-	}
+	if (scoreNodes) match.appendChild(scoreNodes)
 }
