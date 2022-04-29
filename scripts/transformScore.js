@@ -7,7 +7,7 @@ const transformScore = (match, scoreNodes) => {
 
 	homeClasses.map((homeClass, i) =>
 		match.querySelector(`:scope > ${homeClass}`)
-			? scoreItem(homeClasses, awayClasses[i], colonClasses[i], editHalf[i])
+			? scoreItem(homeClasses[i], awayClasses[i], colonClasses[i], editHalf[i])
 			: undefined
 	)
 
@@ -16,9 +16,7 @@ const transformScore = (match, scoreNodes) => {
 		const scoreAway = match.querySelector(away)
 		const scoreColon = document.createElement("span")
 
-		scoreNodes.appendChild(scoreHome)
-		scoreNodes.appendChild(scoreColon)
-		scoreNodes.appendChild(scoreAway)
+		scoreNodes.append(scoreHome, scoreColon, scoreAway)
 
 		scoreColon.className = colonClass
 		scoreColon.textContent = ":"
