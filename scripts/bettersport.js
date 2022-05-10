@@ -1,6 +1,9 @@
 import { matchRefresh } from "/scripts/matchRefresh.js"
 import { keepOddsPretty } from "/scripts/keepOddsPretty.js"
 
+document.addEventListener("DOMContentLoaded", () => fullRefresh())
+window.addEventListener("load", () => fullRefresh())
+
 const deepObserving = () => {
 	deepObserver.observe(document.body, {
 		childList: true,
@@ -16,14 +19,12 @@ const deepObserver = new MutationObserver((mutations) => {
 			mutation.addedNodes[0].classList.contains("event__stage") ||
 			mutation.addedNodes[0].classList.contains("event__part--away")
 		) {
-			console.log("333")
 			const everyMatch = true // refresh not-live match as well (because of PKV, delayed starts etc.)
 			matchRefresh(mutation.target.closest(".event__match"), everyMatch)
 			continue
 		}
 
 		if (mutation.target.classList.contains("sportName")) {
-			console.log("444")
 			fullRefresh()
 			break
 		}
@@ -41,4 +42,3 @@ const fullRefresh = () => {
 }
 
 deepObserving()
-fullRefresh()
