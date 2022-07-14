@@ -2,7 +2,7 @@
 
 ## _Football match scores packed in one simple line instead of two_ ⚽
 
-Livesport.cz, a popular site for sports scores, changed its look a few weeks ago. I built this expansion because I prefer the earlier, simpler one row layout. You can compare the screenshots below. Only football matches are affected by this extension; no other sports are modified.
+Livesport.cz, a popular site for sports results, changed its look a few weeks ago. I built this extension because I prefer the earlier, simpler one row layout. You can compare the screenshots below. Only football matches are affected by this extension; no other sports are modified.
 
 ![](docs/images/LS-live-new.png)  
 ⬆️ The image above shows a design layout with this extension active.  
